@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="all.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- header start -->
+		<!-- 封面照片 -->
+		<header class="header">
+			<h1 class="header_title">
+				高雄旅遊資訊
+				<!-- 選單 -->
+				<select class="areaId">
+					<option value="--請選擇行政區--">--請選擇行政區--</option>
+					<option value="苓雅區">苓雅區</option>
+					<option value="三民區">三民區</option>
+					<option value="新興區">新興區</option>
+					<option value="鹽程區">鹽程區</option>
+				</select>
+			</h1>
+			<!-- 熱門行政區 -->
+			<div class="popmenu">
+				<p class="popmenu_title">熱門行政區</p>
+				<div class="popmenu_btngroup">
+					<input type="button" value="苓雅區" class="btn Lingya">
+					<input type="button" value="三民區" class="btn Sanmin">
+					<input type="button" value="新興區" class="btn Xinxing">
+					<input type="button" value="鹽埕區" class="btn Yancheng">
+				</div>
+				<!-- 空白區分隔線 -->
+				<div class="contentTop"></div>
+			</div>
+		</header>
+		<!-- header end -->
+
+		<!-- content start -->
+		<div class="content">
+			<h2 class="list_title"></h2>
+			<ul class="list">
+			</ul>
+		</div>
+		<!-- content end -->
+
+		<!-- footer start -->
+		<footer class="footer">
+			<p>
+				高雄旅遊網
+				<br>
+				資料來源：高雄市政府
+			</p>
+		</footer>
+		<!-- footer end-->
+	</div>
+</body>
+<script src="data.js"></script>
+<script src="https://kit.fontawesome.com/e334472a3c.js" crossorigin="anonymous"></script>
+<script src="all.js"></script>
+
+</html>
