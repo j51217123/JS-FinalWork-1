@@ -56,6 +56,14 @@ img{
 	max-width: 100%;
 }
 
+li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+}
+
 .wrapper{
 	width: 1024px;
 	margin: 0 auto;
@@ -244,6 +252,26 @@ img{
 	padding-right: 23px;
 }
 
+.pagination{
+	display: flex;
+	justify-content: center;
+}
+
+.pagination span{
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	padding: 15px;
+}
+
+.pagination span:hover {
+		cursor: pointer;
+		color: #559AC8;
+		font-size: 20px;
+}
+
 /* footer */
 .footer{
 	background-color: #559AC8 ;
@@ -251,4 +279,9 @@ img{
 	text-align: center;
 	padding: 20px;
 	line-height: 30px;
+}
+
+.pagination_btngroup{
+	display: flex;
+	justify-content:center;
 }

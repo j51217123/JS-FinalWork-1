@@ -1,21 +1,40 @@
-var areaId = document.querySelector('.areaId');
-var list = document.querySelector('.list');
-var list_title = document.querySelector('.list_title');
-var btn = document.querySelectorAll('.btn');
+const areaId = document.querySelector('.areaId');
+const list = document.querySelector('.list');
+const listTitle = document.querySelector('.list_title');
+const areaButton = document.querySelectorAll('.btn');
 
-areaId.addEventListener('change', areaList, false);
 
-for (i = 0; i < btn.length; i++) {
-	btn[i].addEventListener('click', areaList, false);
+
+
+function pagination(allData) {
+	const page = document.querySelector('.pagination');
+	let btnNum = Math.ceil(allData.length / 10); // 要分幾頁
+	let str = '';
+	for (let i = 0; i < btnNum; i++) {
+		str += `<span class='dataPage' data-index=${i + 1}>${i + 1}</span>`
+	}
+	page.innerHTML = str;
+	const btn = document.querySelectorAll('.pagination span');
+	for (let i = 0; i < btn.length; i++) {
+		btn[i].addEventListener('click', function (e) {
+			changePage(e, allData)
+		})
+	}
 }
+changePage(1, data);  // default page
+pagination(data);
 
-function areaList(e) {
-	var select = e.target.value;
-	var str = '';
-	var Zone = '';
-	for (i = 0; i < data.length; i++) {
-		if (select == data[i].Zone) {
-			str += `<li class="card">
+const delData = []
+
+function changePage(e, data) {
+	let index = (typeof (e) === 'number') ? e : +(e.target.dataset.index)
+	const items = 10; // 一頁多少物件
+	const pageIndexStart = (index - 1) * items;
+	const pageIndexEnd = index * items;
+	let str = '';
+	for (let i = pageIndexStart; i < pageIndexEnd; i++) {
+		if (i >= data.length) { break };
+		str += `<li class="card">
 								<div class="card_imagebox">
 									<h1 class="card_title">${data[i].Name}</h1>							
 									<div class="card_image" style="background-image:url(${data[i].Picture1})"></div>
@@ -41,12 +60,48 @@ function areaList(e) {
 									</div>
 								</div>
 							</li>`
-			Zone = `<h2>${data[i].Zone}</h2>`;
-		}
-		else if (select == '--請選擇行政區--') {
-			str = `<p class="area_select">--請選擇行政區--</p>`;
-		}
-	}
+	};
 	list.innerHTML = str;
-	list_title.innerHTML = Zone;
+	pagination(data)  // 再次更新按鈕列表
+
+
+	// const prev = document.querySelector('.prev');
+	// prev.addEventListener('click', function () {
+	// 	if (index != 0) {
+	// 			delData.push(data.splice(0, `${(index * items) - 10} `))
+	// 			console.log(delData,'delData')
+	// 	}
+	// 	list.innerHTML = JSON.stringify(delData[1])
+	// 	// changePage(1, delData);
+	// })
 }
+
+
+
+
+
+areaId.addEventListener('change', selectZone);
+
+for (let i = 0; i < areaButton.length; i++) {
+	areaButton[i].addEventListener('click', selectZone)
+}
+
+const zoneData = [];
+
+function selectZone(e) {
+	zoneData.length = 0;
+	if (e.target.value !== '--請選擇行政區--') {
+		for (let i = 0; i < data.length; i++) {
+			if (e.target.value == data[i].Zone) {
+				zoneData.push(data[i]);
+			}
+		}
+		changePage(1, zoneData); // default page
+	}
+	else {
+		changePage(1, data)
+	}
+}
+
+
+
