@@ -4,7 +4,9 @@ const listTitle = document.querySelector('.list_title');
 const areaButton = document.querySelectorAll('.btn');
 
 
-
+for (let i = 0; i < areaButton.length; i++) {
+	areaButton[i].addEventListener('click', selectZone)
+}
 
 function pagination(allData) {
 	const page = document.querySelector('.pagination');
@@ -17,6 +19,7 @@ function pagination(allData) {
 	const btn = document.querySelectorAll('.pagination span');
 	for (let i = 0; i < btn.length; i++) {
 		btn[i].addEventListener('click', function (e) {
+			console.log(e)
 			changePage(e, allData)
 		})
 	}
@@ -24,10 +27,10 @@ function pagination(allData) {
 changePage(1, data);  // default page
 pagination(data);
 
-const delData = []
 
 function changePage(e, data) {
 	let index = (typeof (e) === 'number') ? e : +(e.target.dataset.index)
+	// console.log(index)
 	const items = 10; // 一頁多少物件
 	const pageIndexStart = (index - 1) * items;
 	const pageIndexEnd = index * items;
@@ -65,26 +68,25 @@ function changePage(e, data) {
 	pagination(data)  // 再次更新按鈕列表
 
 
-	// const prev = document.querySelector('.prev');
-	// prev.addEventListener('click', function () {
-	// 	if (index != 0) {
-	// 			delData.push(data.splice(0, `${(index * items) - 10} `))
-	// 			console.log(delData,'delData')
-	// 	}
-	// 	list.innerHTML = JSON.stringify(delData[1])
-	// 	// changePage(1, delData);
-	// })
+	const prev = document.querySelector('.prev');
+	prev.addEventListener('click', function (data) {
+		var prevPage = function test(data) {
+			for (var i = 0; i < data.length; i++) {
+				if (index != 0) {
+					var delData = data[i].splice(0, `${(index * 10) - 10} `)
+					console.log(delData)
+				}
+			}
+			list.innerHTML = delData;
+		}
+		list.innerHTML = prevPage;
+		console.log(prevPage, 'prevPage')
+	})
 }
-
-
 
 
 
 areaId.addEventListener('change', selectZone);
-
-for (let i = 0; i < areaButton.length; i++) {
-	areaButton[i].addEventListener('click', selectZone)
-}
 
 const zoneData = [];
 
