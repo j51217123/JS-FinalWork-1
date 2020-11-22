@@ -91,7 +91,6 @@ function changePage(e, data) { // function
 							</li>`
 	};
 	list.innerHTML = str;
-	pagination(data);
 	changePaginationTextColor()
 }
 
@@ -105,7 +104,7 @@ function selectZone(e) {
 				zoneData.push(data[i]);
 			}
 		}
-		pagination(currentData); // 依照 zoneData 資料重新渲染按鈕數
+		pagination(zoneData); // 依照 zoneData 資料重新渲染按鈕數
 		changePage(currentPage, zoneData);
 		currentData = zoneData; //  帶入 prev & next function 41、47行
 	} else {
