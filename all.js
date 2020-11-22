@@ -91,6 +91,7 @@ function changePage(e, data) { // function
 							</li>`
 	};
 	list.innerHTML = str;
+	pagination(data);
 	changePaginationTextColor()
 }
 
